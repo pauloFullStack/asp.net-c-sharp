@@ -1,0 +1,32 @@
+﻿@{
+    ViewData["Title"] = "Lista de Contatos";
+}
+
+<div class="text-center">
+
+    <div class="btn-position">
+        <a asp-area="" asp-controller="Contato" asp-action="Create" class="btn btn-outline-success">Add novo contato</a>
+    </div>
+
+    <h1 class="display-4">Contatos</h1>
+    <table class="table">
+        <thead>
+            <tr>
+                <th scope="col">Nome</th>
+                <th scope="col">E-mail</th>
+                <th scope="col">Telefone</th>
+                <th scope="col">Editar</th>
+                <th scope="col">Apagar</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+                <td>Mark</td>
+                <td>Otto</td>
+                <td>t</td>
+                <td><a asp-area="" asp-controller="Contato" asp-action="Update"><i style="color: #0000ff" class="fa-regular fa-pen-to-square"></i></a></td>
+                <td><a asp-area="" asp-controller="Contato" asp-action="DeleteConfirmation"><i style="color: #ff0000" class="fa-solid fa-trash"></i></a></td>
+            </tr>
+        </tbody>
+    </table>
+</div>
