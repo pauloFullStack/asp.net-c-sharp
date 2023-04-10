@@ -1,7 +1,42 @@
-﻿@{
-    ViewData["Title"] = "Lista de Contatos";
+﻿@model ContatoModel
+@{
+    ViewData["Title"] = "Editar Contatos";
 }
 
 <div class="text-center">
     <h1 class="display-4">Atualizar Contato</h1>
 </div>
+<form asp-controller="Contato" asp-action="UpdateContact" method="post">
+    <input type="hidden" asp-for="Id" />
+    <div class="form-group">
+
+        <div class="div-input">
+            <label for="exampleInputEmail1">Nome</label>
+            <input asp-for="Name" type="text" class="form-control" placeholder="Nome">
+            <div class="msg-erro">
+                @Html.ValidationMessageFor(objContato  => objContato.Name)
+            </div>
+        </div>
+
+        <div class="div-input">
+            <label for="exampleInputEmail1">Email</label>
+            <input asp-for="Email" type="email" class="form-control" placeholder="Email">
+            <div class="msg-erro">
+                @Html.ValidationMessageFor(objContato  => objContato.Email)
+            </div>
+        </div>
+
+        <div class="div-input">
+            <label for="exampleInputEmail1">Telefone</label>
+            <input asp-for="Celular" type="text" class="form-control" placeholder="Telefone">
+            <div class="msg-erro">
+                @Html.ValidationMessageFor(objContato  => objContato.Celular)
+            </div>
+        </div>
+
+    </div>
+    <div class="div-btn">
+        <a type="button" class="btn btn-secondary" asp-area="" asp-controller="Contato" asp-action="Index">Voltar</a>
+        <button type="submit" class="btn btn-primary">Alterar</button>
+    </div>
+</form>

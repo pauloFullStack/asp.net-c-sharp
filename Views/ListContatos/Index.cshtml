@@ -1,4 +1,5 @@
-﻿@{
+﻿@model List<ContatoModel>
+@{
     ViewData["Title"] = "Lista de Contatos";
 }
 
@@ -7,11 +8,33 @@
     <div class="btn-position">
         <a asp-area="" asp-controller="Contato" asp-action="Create" class="btn btn-outline-success">Add novo contato</a>
     </div>
-
+    @if (TempData["MsgSuccess"] != null)
+    {
+        <div class="alert alert-success" role="alert">
+            <div class="btn-flex">
+                <button type="button" class="btn btn-outline-success btn-sm close-alert" arial-label="Close">X</button>
+            </div>
+            <div class="p-flex">
+                <p>@TempData["MsgSuccess"]</p>
+            </div>
+        </div>
+    }
+    @if (TempData["MsgError"] != null)
+    {
+        <div class="alert alert-danger" role="alert">
+            <div class="btn-flex">
+                <button type="button" class="btn btn-outline-danger btn-sm close-alert" arial-label="Close">X</button>
+            </div>
+            <div class="p-flex">
+                <p>@TempData["MsgError"]</p>
+            </div>
+        </div>
+    }
     <h1 class="display-4">Contatos</h1>
     <table class="table">
         <thead>
             <tr>
+                <th scope="col">Id</th>
                 <th scope="col">Nome</th>
                 <th scope="col">E-mail</th>
                 <th scope="col">Telefone</th>
@@ -20,13 +43,20 @@
             </tr>
         </thead>
         <tbody>
-            <tr>
-                <td>Mark</td>
-                <td>Otto</td>
-                <td>t</td>
-                <td><a asp-area="" asp-controller="Contato" asp-action="Update"><i style="color: #0000ff" class="fa-regular fa-pen-to-square"></i></a></td>
-                <td><a asp-area="" asp-controller="Contato" asp-action="DeleteConfirmation"><i style="color: #ff0000" class="fa-solid fa-trash"></i></a></td>
-            </tr>
+            @if (Model != null && Model.Any())
+            {
+                foreach (ContatoModel contato in Model)
+                {
+                    <tr>
+                        <td>@contato.Id</td>
+                        <td>@contato.Name</td>
+                        <td>@contato.Email</td>
+                        <td>@contato.Celular</td>
+                        <td><a asp-area="" asp-route-id="@contato.Id" asp-controller="Contato" asp-action="Update"><i style="color: #0000ff" class="fa-regular fa-pen-to-square"></i></a></td>
+                        <td><a asp-area="" asp-route-id="@contato.Id" asp-controller="Contato" asp-action="DeleteConfirmation"><i style="color: #ff0000" class="fa-solid fa-trash"></i></a></td>
+                    </tr>
+                }
+            }
         </tbody>
     </table>
 </div>

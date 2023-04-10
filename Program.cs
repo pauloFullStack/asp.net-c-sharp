@@ -1,4 +1,5 @@
 using CadastroDeContatos.Data;
+using CadastroDeContatos.Repositorio;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 
@@ -10,6 +11,8 @@ builder.Services.AddControllersWithViews();
 
 builder.Services.AddDbContext<BancoContext>(options =>
     options.UseSqlServer(builder.Configuration.GetConnectionString("Connection")));
+
+builder.Services.AddScoped<IContatoRepositorio, ContatoRepositorio>();
 
 var app = builder.Build();
 
